@@ -1,5 +1,11 @@
 #include<stdio.h>
 
+void swap(int *a, int *b){
+	int temp = *a;
+	*a = *b;
+	*b = temp;
+}
+
 void bubblesort(int arr[], int size){
 	int flag; //If the array is already sorted then it will optimize the algorithm
 	for(int i=0; i<size-1; i++){
@@ -9,6 +15,7 @@ void bubblesort(int arr[], int size){
 		{
 			if(arr[j] > arr[j+1]){
 				swap(&arr[j], &arr[j+1]);
+				flag = 1; // Set flag to 1 if a swap occurs
 			}
 		}
 		if(flag == 0){
@@ -23,17 +30,20 @@ void printArray(int arr[], int size){
 		printf("%d ", arr[i]);
 		i++;
 	}
-
+	printf("\n");
 }
 
 int main(){
 	int arr[] = {50,40,30,20,10};
 	
-	printf("The array before sorting is: ");
-	printArray(arr, arr.length);
+	int length = sizeof(arr)/sizeof(arr[0]);
 	
-	printf("After sorting the srray is: ");
-	printArray(arr, arr.length);
+	printf("The array before sorting is: ");
+	printArray(arr, length);
+	
+	bubblesort(arr, length);
+	printf("After sorting the array is: ");
+	printArray(arr, length);
 	
 	return 0;
 }
